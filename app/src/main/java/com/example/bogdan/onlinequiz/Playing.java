@@ -49,6 +49,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtQuestionNum = (TextView) findViewById(R.id.txtQuestionsTotal);
         questionText = (TextView) findViewById(R.id.question_text);
+        question_image = (ImageView) findViewById(R.id.question_image);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -116,6 +117,12 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
                 question_image.setVisibility(View.VISIBLE);
                 questionText.setVisibility(View.INVISIBLE);
 
+            }else{
+
+                questionText.setVisibility(View.VISIBLE);
+                question_image.setVisibility(View.INVISIBLE);
+                questionText.setText(Common.questionList.get(index).getQuestion());
+
             }
 
             btnA.setText(Common.questionList.get(index).getAnswerA());
@@ -160,7 +167,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
-        showQuestion(++index);
+        showQuestion(index);
 
     }
 }

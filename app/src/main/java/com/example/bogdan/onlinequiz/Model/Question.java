@@ -2,7 +2,7 @@ package com.example.bogdan.onlinequiz.Model;
 
 public class Question {
 
-    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, categoryId, isImageQuestion;
+    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, CategoryId, IsImageQuestion;
 
     public Question() {
     }
@@ -14,8 +14,8 @@ public class Question {
         AnswerC = answerC;
         AnswerD = answerD;
         CorrectAnswer = correctAnswer;
-        this.categoryId = categoryId;
-        this.isImageQuestion = isImageQuestion;
+        CategoryId = categoryId;
+        IsImageQuestion = isImageQuestion;
     }
 
     public String getQuestion() {
@@ -67,18 +67,18 @@ public class Question {
     }
 
     public String getCategoryId() {
-        return categoryId;
+        return CategoryId;
     }
 
     public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+        CategoryId = categoryId;
     }
 
     public String getIsImageQuestion() {
-        return isImageQuestion;
+        return IsImageQuestion;
     }
 
     public void setIsImageQuestion(String isImageQuestion) {
-        this.isImageQuestion = isImageQuestion;
+        IsImageQuestion = isImageQuestion;
     }
 }

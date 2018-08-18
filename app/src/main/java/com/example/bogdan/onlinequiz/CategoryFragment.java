@@ -74,21 +74,21 @@ public class CategoryFragment extends Fragment {
                 R.layout.category_layout,
                 CategoryViewHolder.class,
                 categories) {
+
             @Override
             protected void populateViewHolder(CategoryViewHolder viewHolder, final Category model, int position) {
+
                 viewHolder.category_name.setText(model.getName());
+
                 Picasso.get()
                         .load(model.getImage())
                         .into(viewHolder.category_image);
 
-              //  Log.d("PICASSO ::::::", model.getImage());
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                      //  Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),
-                      //                  model.getName()),Toast.LENGTH_SHORT)
-                      //          .show();
+
                         Intent startGame = new Intent(getActivity(),Start.class);
                         Common.categoryId = adapter.getRef(position).getKey();
                         startActivity(startGame);
