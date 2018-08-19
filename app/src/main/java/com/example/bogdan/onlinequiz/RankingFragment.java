@@ -1,5 +1,6 @@
 package com.example.bogdan.onlinequiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bogdan.onlinequiz.Common.Common;
+import com.example.bogdan.onlinequiz.Interface.ItemClickListener;
 import com.example.bogdan.onlinequiz.Interface.RankingCallBack;
 import com.example.bogdan.onlinequiz.Model.QuestionScore;
 import com.example.bogdan.onlinequiz.Model.Ranking;
@@ -56,7 +58,7 @@ public class RankingFragment extends Fragment{
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         myFragment = inflater.inflate(R.layout.fragment_ranking,container,false);
 
@@ -82,11 +84,24 @@ public class RankingFragment extends Fragment{
                         Ranking.class,R.layout.layout_ranking,RankingViewHolder.class,rankingTable.orderByChild("score")
                     ) {
                         @Override
-                        protected void populateViewHolder(RankingViewHolder viewHolder, Ranking model, int position) {
+                        protected void populateViewHolder(RankingViewHolder viewHolder, final Ranking model, int position) {
                             viewHolder.txt_name.setText(model.getUserName());
                             viewHolder.txt_score.setText(String.valueOf(model.getScore()));
+
+                            viewHolder.setItemClickListener(new ItemClickListener() {
+                                @Override
+                                public void onClick(View view, int position, boolean isLongClick) {
+
+                                    Intent intent = new Intent(getActivity(),ScoreDetail.class);
+                                    intent.putExtra("viewUser",model.getUserName());
+                                    startActivity(intent);
+
+                                }
+                            });
+
                         }
                     };
+
 
         adapter.notifyDataSetChanged();
         rankingList.setAdapter(adapter);
