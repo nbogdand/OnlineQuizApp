@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context=".SignUp">
+
+    <ImageView
+        android:layout_above="@+id/sign_up_group"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sign_up_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardElevation="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/newUserName"
+                android:hint="@string/user_name"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_baseColor="@color/colorPrimary"
+                app:met_singleLineEllipsis="true"/>
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/newPassword"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_baseColor="@color/colorPrimary"
+                app:met_singleLineEllipsis="true"/>
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/repeatPassword"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_baseColor="@color/colorPrimary"
+                app:met_singleLineEllipsis="true"/>
+
+
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/newEmail"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_baseColor="@color/colorPrimary"
+                app:met_singleLineEllipsis="true"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_below="@id/sign_up_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/signUpButton"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:text="CREATE"
+            android:textColor="#191944" />
+        <Button
+            android:id="@+id/cancel"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:text="CANCEL"
+            android:textColor="#191944" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.bogdan.onlinequiz.BroadcastReceiver.AlarmReceiver;
@@ -28,8 +29,9 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    MaterialEditText newUserNameEditText, newPasswordEditText, newEmailEditText;
+    MaterialEditText newUserNameEditText, newPasswordEditText,confirmEditText, newEmailEditText;
     MaterialEditText userNameEditText, passwordEditText;
+    CheckBox checkBox;
 
     Button signUpButton, signInButton;
 
@@ -57,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSignUpDialog();
+
+                Intent signUpActivity = new Intent(MainActivity.this, SignUp.class);
+                startActivity(signUpActivity);
+
             }
 
         });
@@ -128,66 +133,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showSignUpDialog() {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle("SignUp");
-        alertDialog.setMessage("Please fill full information");
-
-        LayoutInflater inflater = this.getLayoutInflater();
-        View sign_up_layout = inflater.inflate(R.layout.sign_up_layout,null);
-
-        newUserNameEditText = (MaterialEditText) sign_up_layout.findViewById(R.id.newUserName);
-        newPasswordEditText = (MaterialEditText) sign_up_layout.findViewById(R.id.newPassword);
-        newEmailEditText = (MaterialEditText) sign_up_layout.findViewById(R.id.newEmail);
-
-        alertDialog.setView(sign_up_layout);
-        alertDialog.setIcon(R.drawable.ic_person_black_24dp);
-
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                final User user = new User(newUserNameEditText.getText().toString(),
-                                    newPasswordEditText.getText().toString(),
-                                    newEmailEditText.getText().toString());
-
-                users.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        if(dataSnapshot.child(user.getUserName()).exists()) {
-                            final Toast toast = Toast.makeText(MainActivity.this, "User already exists !", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }else{
-
-                            users.child(user.getUserName()).setValue(user);
-                            final Toast toast = Toast.makeText(MainActivity.this,"User registration successful!", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        final Toast error = Toast.makeText(MainActivity.this,"Database error", Toast.LENGTH_SHORT);
-                        error.show();
-                    }
-                });
-
-                dialogInterface.dismiss();
-            }
-        });
-
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-
-        alertDialog.show();
-
-    }
 }
